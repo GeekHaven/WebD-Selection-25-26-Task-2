@@ -1,70 +1,127 @@
-# Web Development Wing Member Selection - Backend Round 2
+# Web Development Wing Member Selection - Backend Round 2  
+**Unleashing Backend Mastery**  
 
-## Unleashing Backend Mastery
-
-**Congratulations on embarking on this quest to join the web development wing of GeekHaven!** In this thrilling mission, you’ll channel your backend skills to forge the foundation of a dynamic **Reselling Platform**. Prepare for a captivating journey into the realms of **Express.js**, where you’ll create a marketplace for buying and selling pre-loved treasures.
-
-## Phase 2: Deadline - 30 August 2025, 11:59 Pm
-
-## The Epic Journey
-
-- **Forging the Backend Marketplace**
-   - Construct an Express.js backend stronghold, where the server-side magic will thrive.
-   - Secure the marketplace with the veil of **authentication and authorization**, ensuring only the rightful users enter and act.
-   - Carve the API Paths of a bustling reselling marketplace:
-     - **User Onboarding**: Design routes for **user registration** and **login**, where buyers and sellers alike join the platform.
-     - **User Profile Mastery**: Build routes that allow users to **view and update profiles** with their contact info, location, and transaction history.
-     - **Marketplace Listings**: Create APIs for **posting new products**, **fetching product listings** with pagination, and updating or removing listings by sellers.
-     - **Favorites and Likes**: Grant users the ability to like or favorite items to keep track of potential purchases.
-     - **Shopping Cart Sorcery**: Develop routes to add items to the cart, update quantities, and remove items before proceeding to checkout.
-     - **Checkout and Transactions**: Handle the process of cart checkout, generating invoices and processing payments with mock data or real integration (optional).
-
-- **Harnessing the Data Magic**
-   - Power your reselling world by wielding the forces of **MongoDB** or **MySQL** to store and retrieve users, products, and transaction details (Extra points for SQL mastery).
+Congratulations on embarking on this quest to join the Web Development Wing of GeekHaven!  
+In this thrilling mission, you’ll channel your backend skills to forge the foundation of a dynamic **Reselling Platform**.  
+Prepare for a captivating journey into the realms of **Express.js**, where you’ll create a marketplace for buying and selling pre-loved treasures.  
 
 ---
 
-## The Sweet Optional Scrolls
-
-- **Seller Reviews and Ratings**: Let users leave reviews and ratings for sellers after successful transactions, creating trust within the marketplace.
-- **Real-Time Chat Portal**: Implement real-time chat between buyers and sellers to discuss product details or negotiate prices.
-- **Featured Listings**: Enable sellers to promote their listings, pushing their items to the top of the marketplace for enhanced visibility.
-- **Notifications System**: Set up a notification system to alert users when their liked items drop in price or when new products are listed in their favorite categories.
-- **Product Search and Filters**: Build powerful search functionality that allows users to find products based on name, category, location, or price, and filter results with ease.
+## Phase 2 Deadline  
+**30 August 2025, 11:59 PM**  
 
 ---
 
-## Magical Tools and Codex
+## The Epic Journey  
 
-- **Database Mastery**:
-   - Summon the powers of **MongoDB** or venture into the realm of **MySQL** to shape your database and record your progress (Extra points for SQL charm!).
-- **Documentation of Spells**:
-   - Draft detailed documentation to guide future developers on how to summon and set up your backend creation. Make it comprehensive and enlightening!
-
----
-
-## Unveiling the Mastery
-
-- **The Gaze of Evaluation**:
-   - Create robust and well-structured API routes to handle all key marketplace functions.
-   - Ensure **authentication and authorization** guard your backend from malicious intrusions.
-   - Maintain a clean and well-organized codebase, making it easy to understand and navigate.
-   - Master the dance of asynchrony using **async/await** for smooth database interactions.
-   - Bonus points for bringing **real-time capabilities** into the marketplace through websockets or other event-driven magic.
+### 1. Forging the Backend Marketplace  
+- Construct an **Express.js backend stronghold**, where the server-side magic will thrive.  
+- Secure the marketplace with **authentication & authorization** so only rightful users can act.  
+- Carve the API paths of a bustling reselling marketplace:  
+  - **User Onboarding** → Registration & login for buyers and sellers.  
+  - **User Profile Mastery** → View & update profile with contact info, location, transaction history.  
+  - **Marketplace Listings** → Post new products, fetch listings with pagination, update/remove own listings.  
+  - **Favorites & Likes** → Like/favorite items to track potential purchases.  
+  - **Shopping Cart Sorcery** → Add items, update quantities, remove items before checkout.  
+  - **Checkout & Transactions** → Handle checkout, generate invoices, and process payments (mock or real integration optional).  
 
 ---
 
-## Presenting Your Tome
-
-- **Summoning the Scepter of Submission**:
-   - Share the GitHub repository link to your backend creation, showcasing your implementation of the reselling platform's core features.
-   - Ensure your README.md file serves as a guide for setting up and running your project, detailing the APIs you've implemented and the structure of your application.
+### 2. Harnessing the Data Magic  
+- Power your reselling world with **MongoDB** or **MySQL**.  
+- Bonus points if you show strong **SQL mastery**.  
 
 ---
 
-## The Dazzling Culmination
+### 3. The Sweet Optional Scrolls (Bonus Features)  
+- Seller reviews & ratings  
+- Real-time chat between buyers & sellers  
+- Featured listings (promoted products)  
+- Notifications for liked items or categories  
+- Search & filters (by name, category, location, price)  
 
-As you venture through this quest, remember that this challenge is not just about finishing. It’s about showcasing your backend expertise, crafting a scalable, efficient, and well-documented platform. We await your masterpiece — a robust, dynamic marketplace that reflects your skills, creativity, and understanding of backend development.
+---
 
-**May your code reflect clarity and power, and your backend stand as a testament to your mastery. The Web Development Wing is eager to witness your creation!**
+## 🔐 Anti-Copy Constraints (Read Carefully)  
+
+To ensure every submission is **unique and original**, the following constraints are **mandatory**:  
+
+1. **Assignment Seed (`ASSIGNMENT_SEED`)**  
+   - You will receive a **personal seed** (`GHW25-<unique>`).  
+   - Your backend must:  
+     - Sign/verify admin JWTs with this seed.  
+     - Generate product SKUs using a **checksum derived from this seed**.  
+     - Compute a **platform fee** = `floor(1.7% of subtotal + (n from seed))` during checkout.  
+   - Submissions failing seed validation will be rejected.  
+
+2. **Rate Limiting & Idempotency**  
+   - `/checkout` must be rate-limited to **7 requests per minute per IP**.  
+   - Support **Idempotency-Key headers** → retries within 5 minutes must not double-charge.  
+
+3. **HMAC-Signed Responses**  
+   - On successful `/checkout`, include an HTTP header:  
+     ```
+     X-Signature: HMAC-SHA256(response_body, ASSIGNMENT_SEED)
+     ```  
+   - Our validator will check this.  
+
+4. **Deployment Requirement**  
+   - Deploy your API on **Render/Fly/Railway/any free cloud**.  
+   - Expose two special routes:  
+     - `/<rollno>/healthz` → health check.  
+     - `/logs/recent` → last 50 requests (redacted).  
+
+5. **Deliverables**  
+   - Private GitHub repo (invite mentors).  
+   - Minimum **10 commits over ≥3 days** (no one-shot dumps).  
+   - **OpenAPI YAML** for your API.  
+   - **Postman Collection** for testing.  
+   - **1–2 page ADR (Architecture Decision Record)** explaining design choices.  
+   - **3–5 min demo video** (unlisted link) showing seeded behaviors (e.g., SKU checksum, HMAC header).  
+
+6. **Viva & Change Request**  
+   - In viva, you will be asked to make a **live 10-min change** (e.g., add a new field, update validation).  
+   - Be prepared to walk through your code & explain your design.  
+
+---
+
+## Magical Tools and Codex  
+
+- **Database Mastery** → MongoDB or MySQL.  
+- **Documentation of Spells** → README + API docs must explain how to set up & test.  
+- **Async/Await Mastery** → Handle database ops smoothly.  
+- **Optional Sorcery** → WebSockets/events for real-time magic.  
+
+---
+
+## The Gaze of Evaluation  
+
+- ✅ Seeded behaviors pass hidden tests  
+- ✅ Proper authentication & RBAC  
+- ✅ Pagination works & stable  
+- ✅ Rate limiting + idempotency enforced  
+- ✅ HMAC signature correct  
+- ✅ Clean schema & migrations  
+- ✅ Good ADR & design explanation  
+- ✅ Git history shows real progress  
+- ✅ Demo video + viva performance  
+
+---
+
+## Submission  
+
+- 📂 Private GitHub repository (invite mentors).  
+- 🌐 Deployed URL.  
+- 📜 OpenAPI YAML + Postman collection.  
+- 📝 ADR document.  
+- 🎥 Demo video link.  
+
+---
+
+## Final Words  
+
+This challenge is **not about finishing fastest**—it’s about showcasing **your backend expertise**, your ability to build scalable & secure systems, and your **ownership of the code**.  
+
+May your code reflect clarity and power, and your backend stand as a testament to your mastery.  
+The Web Development Wing awaits your creation 🚀.  
 
